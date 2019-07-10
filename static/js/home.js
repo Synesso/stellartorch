@@ -108,7 +108,7 @@
       ]
     });
 
-    $.getJSON('/static/resources/world.geo.json', function (geojson) { // load file
+    $.getJSON('static/resources/world.geo.json', function (geojson) { // load file
       L.geoJson(geojson, { // initialize layer with data
         style: function (feature) { // Style option
           return {
