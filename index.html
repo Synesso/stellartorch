@@ -3,39 +3,68 @@
 
 <head>
   <title>Stellar Torch Home</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta charset="utf-8" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
-    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-    crossorigin="" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+
+  <!-- Leaflet first -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js"></script>
+
+  <!-- Then mapbox GL -->
+  <link rel="stylesheet" href="https://cdn.maptiler.com/mapbox-gl-js/v0.53.0/mapbox-gl.css" />
+  <script src="https://cdn.maptiler.com/mapbox-gl-js/v0.53.0/mapbox-gl.js"></script>
+
+  <!-- Then the Leaflet/Mapbox bindings -->
+  <script src="https://cdn.maptiler.com/mapbox-gl-leaflet/latest/leaflet-mapbox-gl.js"></script>
+
+  <script src="static/js/leaflet.curve.js"></script>
+  <script src="static/js/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Heebo:900&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css" />
+  <link rel="stylesheet" href="static/css/home.css" media="screen" />
 </head>
 
 <body>
-  <div class="container" style="text-align: center">
 
-    <div id="mapid" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="height: 800px"></div>
-    <div><span>Already </span><span id="distance-span">0</span><span> km covered</span></div>
+  <section class="is-bold">
+    <div class="container">
+      <h1 class="hero-text text-faded">A Stellar Community Experiment.</h1>
+      <h1 class="hero-text text-fading">Pass on the Torch.</h1>
+      <h1 class="hero-text">Show the Stellar strength.</h1>
+    </div>
+  </section>
 
-  </div>
+  <section class="container is-widescreen is-fullhd">
+      <div id="map"></div>
+  </section>
 
-  <!-- scripts -->
+  <footer>
+    <nav class="level">
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Kilometers Covered</p>
+          <p class="stat">133,003</p>
+        </div>
+      </div>
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Torch Bearers</p>
+          <p class="stat">27</p>
+        </div>
+      </div>
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Total Fees</p>
+          <p class="stat">$0.00003</p>
+        </div>
+      </div>
+    </nav>
+  </footer>
 
-  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
-    integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
-    crossorigin=""></script>
-  <script src="static/js/leaflet.curve.js"></script>
-  <script src="static/js/jquery.min.js"></script>
-  <link href="static/css/home.css" rel="stylesheet" media="screen">
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
   <script src="static/js/home.js"></script>
 
-  <!-- Transfert data from server -->
-
   <script>
-    /*<![CDATA[*/
     var stellarTorchHomeOptions = {
       latlngs: [
         [52.370216, 4.895168],
@@ -68,7 +97,6 @@
       ],
       distance: 0
     }
-    /*]]>*/
   </script>
 </body>
 

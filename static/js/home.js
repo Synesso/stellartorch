@@ -91,34 +91,23 @@
 
   function setup(options) {
 
-    var map = L.map('mapid', {
-      'center': [40, 0],
-      'zoom': 2,
-      'worldCopyJump': false,
-      'minZoom': 2,
-      // 'maxZoom': 20,
-      'maxBounds': [
-        [-90, -180],
-        [90, 180]
-      ],
-      'layers': [
-        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          'attribution': 'Map data &copy; OpenStreetMap contributors'
-        })
-      ]
-    });
+    var map = L.map('map', {
+        'center': [40, 0],
+        'zoom': 2,
+        'zoomControl':false,
+        'worldCopyJump': false,
+        'minZoom': 2,
+        'maxBounds': [
+          [-90, -180],
+          [90, 180]
+        ],
+      });
 
-    $.getJSON(window.location.href + '/static/resources/world.geo.json', function (geojson) { // load file
-      L.geoJson(geojson, { // initialize layer with data
-        style: function (feature) { // Style option
-          return {
-            'weight': 1,
-            'color': 'white',
-            'fillColor': 'rgba(230,0,230,1)'
-          }
-        }
-      }).addTo(map); // Add layer to map
-    });
+    var gl = L.mapboxGL({
+      attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>',
+      accessToken: 'not-needed',
+      style: 'https://api.maptiler.com/maps/e65c22c9-cb86-4bff-90d4-6ed1813678d5/style.json?key=QxrALtzKlQScUQ6911oV'
+    }).addTo(map);
 
     var pointsData = initializePointsValues(options.latlngs)
     var distance = options.distance ? options.distance : 0;
@@ -126,8 +115,7 @@
 
     var result = arrayPlusDelay(pointsData, function(p) {
       var pathOptions = {
-        // color: 'rgba(230,0,230,1)',
-        color: 'rgba(0,0,153,0.8)',
+        color: 'rgb(255,165,0)',
         weight: 2
       }
 
@@ -137,7 +125,7 @@
 
       var r = Math.sqrt(Math.pow(offsetX, 2) + Math.pow(offsetY, 2));
 
-      if (typeof document.getElementById('mapid').animate === "function") {
+      if (typeof document.getElementById('map').animate === "function") {
         // var duration = Math.sqrt(Math.log(r)) * DURATION_BASE;
         // Scales the animation duration so that it's related to the line length
         // (but such that the longest and shortest lines' durations are not too different).
