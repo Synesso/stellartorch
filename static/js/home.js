@@ -11,9 +11,12 @@
 
   var DURATION_BASE = 2000;
   var radiusInMeters = 6371000;
+  var xlmUsd = 0.1
   
-  function updateDistance(distanceInKm) {
-    $('#distance-span').text(distanceInKm)
+  function updateStats(distanceInKm, bearers) {
+    $('#stat_kms').text(distanceInKm.toLocaleString());
+    $('#stat_bearers').text(bearers.toLocaleString());
+    $('#stat_fees').text('$' + parseFloat((bearers * 0.00001 * xlmUsd).toPrecision(7)));
   }
 
   Math.radians = function(degrees) {
@@ -111,7 +114,8 @@
 
     var pointsData = initializePointsValues(options.latlngs)
     var distance = options.distance ? options.distance : 0;
-    updateDistance(Math.round(distance/1000))
+    var bearers = 0;
+    updateStats(Math.round(distance/1000), bearers);
 
     var result = arrayPlusDelay(pointsData, function(p) {
       var pathOptions = {
@@ -145,9 +149,10 @@
 
       curvedPath.addTo(map);
 
-      distance = distance + Number(p['dist'])
+      distance = distance + Number(p['dist']);
+      bearers = bearers + 1;
       var distanceInKm = Math.round(distance/1000)
-      updateDistance(distanceInKm)
+      updateStats(distanceInKm, bearers);
       
     }, DURATION_BASE)
   }
