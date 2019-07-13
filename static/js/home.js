@@ -112,6 +112,13 @@
       style: 'https://api.maptiler.com/maps/e65c22c9-cb86-4bff-90d4-6ed1813678d5/style.json?key=QxrALtzKlQScUQ6911oV'
     }).addTo(map);
 
+    // Keep the map hidden until it has fully loaded. (I am not sure how to overwrite default grey of mapbox-gl loading area).
+    $('#map').css({visibility: 'hidden'});
+    gl._glMap.on('load', function() {
+      $('#map').css({visibility: 'visible', opacity: 0})
+        .animate({opacity: 1.0, visibility: 'visible'}, 200);
+    });
+
     var pointsData = initializePointsValues(options.latlngs)
     var distance = options.distance ? options.distance : 0;
     var bearers = 0;
