@@ -1,107 +1,192 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Stellar Torch Home</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta charset="utf-8" />
+    
+    <!-- Leaflet first -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js"></script>
 
-<head>
-  <title>Stellar Torch Home</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta charset="utf-8" />
+    <!-- Then mapbox GL -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.maptiler.com/mapbox-gl-js/v0.53.0/mapbox-gl.css"
+    />
+    <script src="https://cdn.maptiler.com/mapbox-gl-js/v0.53.0/mapbox-gl.js"></script>
 
-  <!-- Leaflet first -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js"></script>
+    <!-- Then the Leaflet/Mapbox bindings -->
+    <script src="https://cdn.maptiler.com/mapbox-gl-leaflet/latest/leaflet-mapbox-gl.js"></script>
 
-  <!-- Then mapbox GL -->
-  <link rel="stylesheet" href="https://cdn.maptiler.com/mapbox-gl-js/v0.53.0/mapbox-gl.css" />
-  <script src="https://cdn.maptiler.com/mapbox-gl-js/v0.53.0/mapbox-gl.js"></script>
+    <script src="static/js/leaflet.curve.js"></script>
+    <script src="static/js/jquery.min.js"></script>
 
-  <!-- Then the Leaflet/Mapbox bindings -->
-  <script src="https://cdn.maptiler.com/mapbox-gl-leaflet/latest/leaflet-mapbox-gl.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Heebo:900&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
-  <script src="static/js/leaflet.curve.js"></script>
-  <script src="static/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="static/css/home.css" media="screen" />
+  </head>
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Heebo:900&display=swap" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css" />
-  <link rel="stylesheet" href="static/css/home.css" media="screen" />
-</head>
+  <body>
+    <section class="is-bold">
+      <div class="container" data-aos="fade-left">
+        <h1 class="hero-text text-faded">A Stellar Community Experiment.</h1>
+        <h1 class="hero-text text-fading">Pass on the Torch.</h1>
+        <h1 class="hero-text">Show the Stellar strength.</h1>
+      </div>
+    </section>
 
-<body>
-
-  <section class="is-bold">
-    <div class="container">
-      <h1 class="hero-text text-faded">A Stellar Community Experiment.</h1>
-      <h1 class="hero-text text-fading">Pass on the Torch.</h1>
-      <h1 class="hero-text">Show the Stellar strength.</h1>
-    </div>
-  </section>
-
-  <section class="container is-widescreen is-fullhd">
+    <section class="container is-widescreen is-fullhd">
       <div id="map"></div>
-  </section>
+    </section>
 
-  <footer>
-    <nav class="level">
-      <div class="level-item has-text-centered">
-        <div>
-          <p class="heading">Kilometres Covered</p>
-          <p class="stat" id="stat_kms">0</p>
+    <footer data-aos="zoom-in">
+      <nav class="level with-padding">
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Kilometres Covered</p>
+            <p class="stat" id="stat_kms">0</p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Torch Bearers</p>
+            <p class="stat" id="stat_bearers">0</p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Total Fees</p>
+            <p class="stat" id="stat_fees">$0.00000</p>
+          </div>
+        </div>
+      </nav>
+    </footer>
+    <section class="bottom">
+      <div class="container" data-aos="fade-right">
+        <div class="columns  is-centered ">
+            <div class="column is-centered">
+                <img class="default-image" src="https://i.imgur.com/Pyp4DwX.png" alt="" />
+              </div>
+          <div class="column content with-padding is-four-fifths">
+            <span class="title">About the Experiment</span><br />
+            <span class="subtitle">Loren Ipsum Dolar Sit Amet.</span>
+            <div class="content with-padding">
+              Etiam ut ligula enim. Quisque luctus dolor eget eros mollis, vel
+              tempus tellus accumsan. Aliquam laoreet sapien non dui vehicula,
+              at tincidunt risus maximus. Quisque volutpat lacus lectus, sed
+              scelerisque neque dapibus eu. Duis mattis magna id faucibus
+              feugiat. Sed vitae justo ut dui sollicitudin bibendum ac nec urna.
+            </br>
+              Ut eu porttitor justo. 
+              Ut ultrices eros ornare elit sagittis, sed
+              ullamcorper mauris consectetur. Suspendisse egestas lacinia
+              sollicitudin.
+            </div>
+          </div>
+          
         </div>
       </div>
-      <div class="level-item has-text-centered">
-        <div>
-          <p class="heading">Torch Bearers</p>
-          <p class="stat" id="stat_bearers">0</p>
+      <div class="container" data-aos="fade-left">
+          <div class="columns  is-centered">
+            <div class="column content with-padding is-four-fifths">
+              <span class="title">About the Experiment</span><br />
+              <span class="subtitle">Loren Ipsum Dolar Sit Amet.</span>
+              <div class="content with-padding ">
+                Etiam ut ligula enim. Quisque luctus dolor eget eros mollis, vel
+                tempus tellus accumsan. Aliquam laoreet sapien non dui vehicula,
+                at tincidunt risus maximus. Quisque volutpat lacus lectus, sed
+                scelerisque neque dapibus eu. Duis mattis magna id faucibus
+                feugiat. Sed vitae justo ut dui sollicitudin bibendum ac nec urna.
+              </br>
+                Ut eu porttitor justo. 
+                Ut ultrices eros ornare elit sagittis, sed
+                ullamcorper mauris consectetur. Suspendisse egestas lacinia
+                sollicitudin.
+              </div>
+            </div>
+            <div class="column is-centered">
+                <img class="default-image" src="https://i.imgur.com/Pyp4DwX.png" alt="" />
+              </div>
+          </div>
         </div>
-      </div>
-      <div class="level-item has-text-centered">
-        <div>
-          <p class="heading">Total Fees</p>
-          <p class="stat" id="stat_fees">$0.00000</p>
-        </div>
-      </div>
-    </nav>
-  </footer>
+        <div class="container" data-aos="fade-right">
+            <div class="columns is-mobile is-centered ">
+              <div class="column content with-padding is-four-fifths">
+                <span class="title">About the Experiment</span><br />
+                <span class="subtitle">Loren Ipsum Dolar Sit Amet.</span>
+                <div class="content with-padding">
+                  Etiam ut ligula enim. Quisque luctus dolor eget eros mollis, vel
+                  tempus tellus accumsan. Aliquam laoreet sapien non dui vehicula,
+                  at tincidunt risus maximus. Quisque volutpat lacus lectus, sed
+                  scelerisque neque dapibus eu. Duis mattis magna id faucibus
+                  feugiat. Sed vitae justo ut dui sollicitudin bibendum ac nec urna.
+                </br>
+                  Ut eu porttitor justo. 
+                  Ut ultrices eros ornare elit sagittis, sed
+                  ullamcorper mauris consectetur. Suspendisse egestas lacinia
+                  sollicitudin.
+                </div>
+              </div>
+              
+            </div>
+          </div>
+    </section>
 
-  <script src="static/js/home.js"></script>
+    <script src="static/js/home.js"></script>
 
-  <script>
-    var stellarTorchHomeOptions = {
-      latlngs: [
-        [52.370216, 4.895168],
-        [45.523064, -122.676483],
-        [38.627003, -90.199402],
-        [14.616199, 121.059319],
-        [34.152588, 77.577049],
-        [30.2841, -81.3961],
-        [47.606209, -122.332069],
-        [47.60323, -122.33028],
-        [33.608768, -117.87336],
-        [50.110924, 8.682127],
-        [37.445099, -122.160362],
-        [33.762909, -84.422675],
-        [40.709189, -74.0098275],
-        [40.709189, -74.0098275],
-        [52.495776, 13.370867],
-        [52.495776, 13.370867],
-        [52.5136111, 13.3966667],
-        [55.432603, 10.201215],
-        [50.850346, 4.351721],
-        [30.267153, -97.743057],
-        [41.157944, -8.629105],
-        [40.416775, -3.70379],
-        [42.280827, -83.743034],
-        [10.823099, 106.629662],
-        [55.739557, 37.656604],
-        [59.93428, 30.335098],
-        [6.294665, -75.544237],
-        [41.715137, 44.827095],
-        [36.778259, -119.417931],
-        [64.126518, -21.817438],
-        [52.520008, 13.404954]
-      ],
-      distance: 0
-    }
-  </script>
-</body>
-
+    <script>
+      var stellarTorchHomeOptions = {
+        latlngs: [
+          [52.370216, 4.895168],
+          [45.523064, -122.676483],
+          [38.627003, -90.199402],
+          [14.616199, 121.059319],
+          [34.152588, 77.577049],
+          [30.2841, -81.3961],
+          [47.606209, -122.332069],
+          [47.60323, -122.33028],
+          [33.608768, -117.87336],
+          [50.110924, 8.682127],
+          [37.445099, -122.160362],
+          [33.762909, -84.422675],
+          [40.709189, -74.0098275],
+          [40.709189, -74.0098275],
+          [52.495776, 13.370867],
+          [52.495776, 13.370867],
+          [52.5136111, 13.3966667],
+          [55.432603, 10.201215],
+          [50.850346, 4.351721],
+          [30.267153, -97.743057],
+          [41.157944, -8.629105],
+          [40.416775, -3.70379],
+          [42.280827, -83.743034],
+          [10.823099, 106.629662],
+          [55.739557, 37.656604],
+          [59.93428, 30.335098],
+          [6.294665, -75.544237],
+          [41.715137, 44.827095],
+          [36.778259, -119.417931],
+          [64.126518, -21.817438],
+          [52.520008, 13.404954]
+        ],
+        distance: 0
+      };
+    </script>
+     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+     <script>
+       AOS.init();
+     </script>
+  </body>
 </html>

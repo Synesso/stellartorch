@@ -1,14 +1,24 @@
-html, body { 
+html,
+body {
   background-color: rgb(125, 0, 255);
   height: 100vh;
 }
-h1, p, title { color: rgb(255, 255, 255); }
 
-.text-faded { opacity: 0.4; }
-.text-fading { opacity: 0.6; }
+h1,
+p,
+title {
+  color: rgb(255, 255, 255);
+}
+
+.text-faded {
+  opacity: 0.4;
+}
+.text-fading {
+  opacity: 0.6;
+}
 
 #map {
-  height: 60vh;
+  height: 45vh;
 }
 
 .hero-text {
@@ -16,7 +26,7 @@ h1, p, title { color: rgb(255, 255, 255); }
   font-weight: 500;
   letter-spacing: 0.5px;
   margin: 0px 0px 0.3rem;
-  font-family: 'Heebo', sans-serif;
+  font-family: "Heebo", sans-serif;
   line-height: 1;
 }
 
@@ -24,4 +34,33 @@ h1, p, title { color: rgb(255, 255, 255); }
   font-size: 2rem;
   font-weight: 600;
   line-height: 1.125;
+}
+
+.leaflet-container {
+  background: rgb(125, 0, 255);
+}
+
+.container {
+  padding-top: 20px;
+}
+
+.bottom {
+  background: white;
+}
+
+.with-padding {
+  padding: 20px;
+}
+.text-container {
+  display: block;
+}
+
+.default-image {
+  max-width: 300px;
+}
+
+@media (min-width: 800px) {
+  .bottom > .container {
+    padding: 80px 80px 10px 80px;
+  }
 }
