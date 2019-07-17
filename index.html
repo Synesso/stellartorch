@@ -33,14 +33,18 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css"
     />
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 
     <link rel="stylesheet" href="static/css/home.css" media="screen" />
+
+      <!-- Animations library -->
+      <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   </head>
 
   <body>
     <section class="is-bold">
-      <div class="container" data-aos="fade-left">
+      <div class="container with-padding" data-aos="fade-left">
         <h1 class="hero-text text-faded">A Stellar Community Experiment.</h1>
         <h1 class="hero-text text-fading">Pass on the Torch.</h1>
         <h1 class="hero-text">Show the Stellar strength.</h1>
@@ -51,7 +55,7 @@
       <div id="map"></div>
     </section>
 
-    <footer data-aos="zoom-in">
+    <section class ="container" data-aos="zoom-in">
       <nav class="level with-padding">
         <div class="level-item has-text-centered">
           <div>
@@ -72,9 +76,9 @@
           </div>
         </div>
       </nav>
-    </footer>
+    </section>
     <section class="bottom">
-      <div class="container" data-aos="fade-right">
+      <div class="container  with-padding" data-aos="fade-right">
         <div class="columns  is-centered ">
             <div class="column is-centered">
                 <img class="default-image" src="https://i.imgur.com/Pyp4DwX.png" alt="" />
@@ -98,7 +102,7 @@
           
         </div>
       </div>
-      <div class="container" data-aos="fade-left">
+      <div class="container secondary-color with-padding" data-aos="fade-left">
           <div class="columns  is-centered">
             <div class="column content with-padding is-four-fifths">
               <span class="title">About the Experiment</span><br />
@@ -121,7 +125,7 @@
               </div>
           </div>
         </div>
-        <div class="container" data-aos="fade-right">
+        <div class="container  with-padding" data-aos="fade-right">
             <div class="columns is-mobile is-centered ">
               <div class="column content with-padding is-four-fifths">
                 <span class="title">About the Experiment</span><br />
@@ -184,7 +188,6 @@
         distance: 0
       };
     </script>
-     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
      <script>
        AOS.init();
      </script>

@@ -2,6 +2,7 @@ html,
 body {
   background-color: rgb(125, 0, 255);
   height: 100vh;
+  overflow-y: visible;
 }
 
 h1,
@@ -41,9 +42,12 @@ title {
 }
 
 .container {
-  padding-top: 20px;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
-
+section {
+  overflow-x: hidden;
+}
 .bottom {
   background: white;
 }
@@ -62,5 +66,10 @@ title {
 @media (min-width: 800px) {
   .bottom > .container {
     padding: 80px 80px 10px 80px;
+  }
+}
+@media (max-width: 800px) {
+  .secondary-color {
+    background: #d5d5fa;
   }
 }
