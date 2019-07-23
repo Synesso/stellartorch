@@ -45,6 +45,7 @@ title {
   overflow-x: hidden;
   overflow-y: hidden;
 }
+
 section {
   overflow-x: hidden;
 }
@@ -55,17 +56,35 @@ section {
 .with-padding {
   padding: 20px;
 }
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .text-container {
   display: block;
 }
 
 .default-image {
-  max-width: 300px;
+  max-width: 200px;
+  max-height: 200px;
+}
+
+ol {
+  counter-reset: item;
+}
+ol li {
+  display: block;
+}
+ol li:before {
+  content: counter(item) ". ";
+  counter-increment: item;
+  font-weight: bold;
 }
 
 @media (min-width: 800px) {
   .bottom > .container {
-    padding: 80px 80px 10px 80px;
+    padding: 50px 10px 10px 0px;
   }
 }
 @media (max-width: 800px) {
