@@ -1,14 +1,25 @@
-html, body { 
+html,
+body {
   background-color: rgb(125, 0, 255);
   height: 100vh;
+  overflow-y: visible;
 }
-h1, p, title { color: rgb(255, 255, 255); }
 
-.text-faded { opacity: 0.4; }
-.text-fading { opacity: 0.6; }
+h1,
+p,
+title {
+  color: rgb(255, 255, 255);
+}
+
+.text-faded {
+  opacity: 0.4;
+}
+.text-fading {
+  opacity: 0.6;
+}
 
 #map {
-  height: 60vh;
+  height: 45vh;
 }
 
 .hero-text {
@@ -16,7 +27,7 @@ h1, p, title { color: rgb(255, 255, 255); }
   font-weight: 500;
   letter-spacing: 0.5px;
   margin: 0px 0px 0.3rem;
-  font-family: 'Heebo', sans-serif;
+  font-family: "Heebo", sans-serif;
   line-height: 1;
 }
 
@@ -24,4 +35,60 @@ h1, p, title { color: rgb(255, 255, 255); }
   font-size: 2rem;
   font-weight: 600;
   line-height: 1.125;
+}
+
+.leaflet-container {
+  background: rgb(125, 0, 255);
+}
+
+.container {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+section {
+  overflow-x: hidden;
+}
+.bottom {
+  background: white;
+}
+
+.with-padding {
+  padding: 20px;
+}
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.text-container {
+  display: block;
+}
+
+.default-image {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+ol {
+  counter-reset: item;
+}
+ol li {
+  display: block;
+}
+ol li:before {
+  content: counter(item) ". ";
+  counter-increment: item;
+  font-weight: bold;
+}
+
+@media (min-width: 800px) {
+  .bottom > .container {
+    padding: 50px 10px 10px 0px;
+  }
+}
+@media (max-width: 800px) {
+  .secondary-color {
+    background: #d5d5fa;
+  }
 }
