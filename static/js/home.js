@@ -173,7 +173,26 @@
   }
 
   // Initialize
-  $(function() {
-    setup(stellarTorchHomeOptions);
-  });
+  fetch(
+    "https://horizon-testnet.stellar.org/accounts/GAQD2V2WWXOAGWKRXTY6KTUSPQXAW7OQU4LY46633DDY6EE3RRZJRLSG/"
+  )
+    .then(d => d.json())
+    .then(acc => {
+      const data = {
+        latlngs: [],
+        locations: [],
+        distance: 0
+      };
+      for (key of Object.keys(acc.data)) {
+        const info = atob(acc.data[key]);
+        const coordinates = info.match(/\+?-?\d+.\d+/g).map(p => parseFloat(p));
+        const location = info.split("|")[1];
+        data.latlngs.push(coordinates);
+        data.locations.push(location);
+      }
+      $(function() {
+        setup(data);
+      });
+    })
+    .catch(e => console.debug("Can't fetch initial Data"));
 })((window.stellarTorchHome = window.stellarTorchHome || {}), jQuery);
