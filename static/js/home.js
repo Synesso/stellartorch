@@ -6,11 +6,12 @@
 // Leaflet: http://leafletjs.com/
 // Leaflet.curve: https://github.com/elfalem/Leaflet.curve
 // Calcul of bezier curve, thx to https://medium.com/@ryancatalani/creating-consistently-curved-lines-on-leaflet-b59bc03fa9dc
-
 (function(stellarTorchHome, $, undefined) {
   var DURATION_BASE = 2000;
   var radiusInMeters = 6371000;
   var xlmUsd = 0.1;
+  const PUBLIC_COORDINATES =
+    "GAXLIQPN2M3IBYTFS2WHSC6E4NPWPTQNWNWHQHXHJKF25J7YRK24RDJA";
 
   function updateStats(distanceInKm, bearers) {
     $("#stat_kms").text(distanceInKm.toLocaleString());
@@ -173,9 +174,7 @@
   }
 
   // Initialize
-  fetch(
-    "https://horizon-testnet.stellar.org/accounts/GAQD2V2WWXOAGWKRXTY6KTUSPQXAW7OQU4LY46633DDY6EE3RRZJRLSG/"
-  )
+  fetch(`https://horizon-testnet.stellar.org/accounts/${PUBLIC_COORDINATES}/`)
     .then(d => d.json())
     .then(acc => {
       const data = {
@@ -183,13 +182,21 @@
         locations: [],
         distance: 0
       };
-      for (key of Object.keys(acc.data)) {
-        const info = atob(acc.data[key]);
-        const coordinates = info.match(/\+?-?\d+.\d+/g).map(p => parseFloat(p));
-        const location = info.split("|")[1];
-        data.latlngs.push(coordinates);
-        data.locations.push(location);
+      const parsedData = [];
+      for (let key of Object.keys(acc.data)) {
+        try {
+          const value = JSON.parse(atob(acc.data[key]));
+          const parsed = {
+            name: key,
+            value
+          };
+          parsedData[parsed.value.index] = parsed;
+        } catch (e) {
+          console.debug(e);
+        }
       }
+      data.latlngs = parsedData.map(d => d.value.coordinates);
+
       $(function() {
         setup(data);
       });
