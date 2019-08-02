@@ -1,5 +1,5 @@
 const maxRecords = 200;
-const ADDRESS = "GCMCL5IBQWJTIQRAPPYGCQ4CHICL76ZKIZDKATKA2PNTOWCMNII4M2N7";
+const PUBLIC_ADDRESS = "GCMCL5IBQWJTIQRAPPYGCQ4CHICL76ZKIZDKATKA2PNTOWCMNII4M2N7";
 
 function fetchPage(nextHref, saved, callback) {
   fetch(nextHref)
@@ -7,7 +7,7 @@ function fetchPage(nextHref, saved, callback) {
     .then(data => {
       const records = data._embedded.records;
       for (let record of records) {
-        if (record.memo)
+        if (record.source_account === PUBLIC_ADDRESS && record.memo)
           saved.push(
             unpackTorch(
               window
@@ -30,7 +30,7 @@ function fetchPage(nextHref, saved, callback) {
 function getBearers(callback) {
   fetchPage(
     "https://horizon.stellar.org/accounts/" +
-      ADDRESS +
+      PUBLIC_ADDRESS +
       "/transactions?limit=" +
       maxRecords +
       "&order=asc",
