@@ -6,9 +6,8 @@
 // Leaflet: http://leafletjs.com/
 // Leaflet.curve: https://github.com/elfalem/Leaflet.curve
 // Calcul of bezier curve, thx to https://medium.com/@ryancatalani/creating-consistently-curved-lines-on-leaflet-b59bc03fa9dc
-
 (function(stellarTorchHome, $, undefined) {
-  var DURATION_BASE = 2000;
+  var DURATION_BASE = 1000;
   var radiusInMeters = 6371000;
   var xlmUsd = 0.1;
 
@@ -173,7 +172,13 @@
   }
 
   // Initialize
-  $(function() {
-    setup(stellarTorchHomeOptions);
+  getBearers(bearers => {
+    const data = {
+      latlngs: bearers.map(b => [parseFloat(b.lat), parseFloat(b.long)]),
+      distance: 0
+    };
+    $(function() {
+      setup(data);
+    });
   });
 })((window.stellarTorchHome = window.stellarTorchHome || {}), jQuery);
