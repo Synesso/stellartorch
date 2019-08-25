@@ -51,6 +51,7 @@ section {
 }
 .bottom {
   background: white;
+  padding-top: 40px;
 }
 
 .with-padding {
@@ -60,6 +61,10 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.flex-left {
+  display: flex;
+  align-items: center;
 }
 .text-container {
   display: block;
@@ -82,13 +87,39 @@ ol li:before {
   font-weight: bold;
 }
 
+#countryList {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+}
+.country {
+  flex: 1 0 21%; /* explanation below */
+  margin: 5px;
+  background: #efefef;
+  box-shadow: 0px 1px 2px 0px grey;
+}
+.backgroundGreen {
+  background: #71e271;
+}
+
+.flag {
+  height: 15px;
+  margin: 20px;
+}
+
 @media (min-width: 800px) {
   .bottom > .container {
-    padding: 50px 10px 10px 0px;
+    padding: 20px 10px 10px 0px;
+  }
+  #countryList {
   }
 }
 @media (max-width: 800px) {
   .secondary-color {
     background: #d5d5fa;
+  }
+  .country {
+    flex: 1 0 90%; /* explanation below */
+    margin: 5px;
   }
 }

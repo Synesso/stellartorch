@@ -177,6 +177,8 @@
       latlngs: bearers.map(b => [parseFloat(b.lat), parseFloat(b.long)]),
       distance: 0
     };
+    console.log(bearers);
+    writeCountryList(bearers);
     $(function() {
       setup(data);
     });
