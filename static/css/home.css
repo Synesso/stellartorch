@@ -97,6 +97,7 @@ ol li:before {
   margin: 5px;
   background: #fbfbfb;
   box-shadow: 0px 1px 2px 0px #dadada;
+  overflow-x: hidden;
 }
 .backgroundGreen {
   background: #71e271;
@@ -105,6 +106,14 @@ ol li:before {
 .flag {
   height: 15px;
   margin: 20px;
+}
+
+.user-name {
+  margin-left: 5px;
+  color: grey;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 @media (min-width: 800px) {
@@ -119,7 +128,7 @@ ol li:before {
     background: #d5d5fa;
   }
   .country {
-    flex: 1 0 90%; /* explanation below */
+    flex: 1 0 90%;
     margin: 5px;
   }
 }
