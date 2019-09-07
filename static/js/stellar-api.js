@@ -40,6 +40,7 @@ function getBearers(callback) {
   );
 }
 
+//gets the usernames linked to the source_account of every transaction containing the payment operation
 async function getUsernames(bearers) {
   const operationSourceUsernames = {};
   var server = new StellarSdk.Server("https://horizon.stellar.org");

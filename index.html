@@ -43,6 +43,7 @@
     />
     
     <link rel="stylesheet" href="static/css/home.css" media="screen" />    
+    <link rel="stylesheet" href="static/css/loader.css" media="screen" />    
 
       <!-- Animations library -->
       <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -127,19 +128,20 @@
           <div class="column content with-padding is-four-fifths">
             <div class="content with-padding">
               <div class="columns  is-centered">
-                
                 <div>
-                    <span class="title">Let's travel the whole world!</span>
-                    
+                    <span class="title">Let's travel the whole world!  
+                    </span>
                 </div>
             </div>
           </div>
         </div>
       </div>
-      <div id ="countries" class="container  with-padding" data-aos="fade-right">
+      <div id="countriesLoader" class="flex-center">
+          <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+      </div>
+      <div id ="countries" class="container  with-padding" data-aos="fade-right">          
           <div id="countryList" >
           </div>
-  
       </div>
     </div>
     
