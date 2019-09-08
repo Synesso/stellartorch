@@ -38,8 +38,13 @@ async function writeCountryList(bearers, usernames) {
       )}">${renderUsernames(countryInfo)}</div></li>`;
     })
   );
+  $("#countries").append(drawNote())
 }
 
+
+function drawNote () {
+  return `<i><b>Note:</b> At the moment, you have to link your stellar address with a keybase account to be able to participate in this challenge. </i>`
+}
 function getBearersUsernames(countryBearers, usernames) {
   const users = [];
   for (let bearer of countryBearers) {
