@@ -1,9 +1,9 @@
-//Thanks to @sui77 for the implementation: https://gist.github.com/sui77/853de79d4d496fc2e50dda15fac464af
+//Thanks to @sui77: https://gist.github.com/sui77/853de79d4d496fc2e50dda15fac464af
 
-function packTorch(entryId, operationId, lat, long) {
+function packTorch(entryId, operationId, lat, long, cCode) {
   let sEntryId = parseInt(entryId).toString(16);
   let sOperationId = new BigNumber(operationId).toString(16);
-
+  let countryCode = cCode.toString(16);
   // map coords to positive int range
   let sLat = Math.round((90 + lat) * 1e7).toString(16);
   let sLong = Math.round((180 + long) * 1e7).toString(16);
@@ -11,7 +11,8 @@ function packTorch(entryId, operationId, lat, long) {
     padZero(sEntryId, 5) +
     padZero(sOperationId, 16) +
     padZero(sLat, 8) +
-    padZero(sLong, 8);
+    padZero(sLong, 8) +
+    padZero(countryCode, 3);
 
   // fill with zeros cause MEMO_HASH expects 64 chars
   while (hex.length < 64) {
@@ -26,15 +27,20 @@ function unpackTorch(s) {
   let operationId = new BigNumber("0x" + s.substr(5, 16)).toString();
   let lat = (parseInt("0x" + s.substr(21, 8)) / 1e7 - 90).toFixed(7);
   let long = (parseInt("0x" + s.substr(29, 8)) / 1e7 - 180).toFixed(7);
+  let cCode = parseInt("0x" + s.substr(37, 3)).toString();
   return {
     entryId: entryId,
     operationId: operationId,
     lat: lat,
-    long: long
+    long: long,
+    country: {
+      code: cCode
+    }
   };
 }
 
 function padZero(s, len) {
   while (s.length < len) s = "0" + s;
+  console.log(s);
   return s;
 }

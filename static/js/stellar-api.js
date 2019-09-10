@@ -1,5 +1,6 @@
 const maxRecords = 200;
-const PUBLIC_ADDRESS = "GAL24WP4UK4S4WUM3PYS4SJAAETS73S6N2JTGKIGGGREDTLGZVJQNESS";
+const PUBLIC_ADDRESS =
+  "GCC762MZ6PFVEQLNEDNLBBLMCXRKQCTNSB6DJIG2IKVAN2XDEUJVEQUY";
 
 function fetchPage(nextHref, saved, callback) {
   fetch(nextHref)
@@ -37,4 +38,40 @@ function getBearers(callback) {
     [],
     callback
   );
+}
+
+//gets the usernames linked to the source_account of every transaction containing the payment operation
+async function getUsernames(bearers) {
+  const operationSourceUsernames = {};
+  var server = new StellarSdk.Server("https://horizon.stellar.org");
+  var promises = [];
+
+  const federationServer = await StellarSdk.FederationServer.createForDomain(
+    "keybase.io"
+  );
+  for (let bearer of bearers) {
+    promises.push(
+      new Promise((resolve, reject) => {
+        server
+          .operations()
+          .operation(bearer.operationId)
+          .call()
+          .then(operationResult => {
+            federationServer
+              .resolveAccountId(operationResult.source_account)
+              .then(response => {
+                if (response.stellar_address) {
+                  operationSourceUsernames[bearer.operationId] =
+                    "@" + response.stellar_address.split("*")[0];
+                }
+                resolve();
+              })
+              .catch(e => resolve());
+          })
+          .catch(e => resolve());
+      })
+    );
+  }
+  await Promise.all(promises);
+  return operationSourceUsernames;
 }

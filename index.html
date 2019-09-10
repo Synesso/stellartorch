@@ -1,151 +1,160 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Stellar Torch Home</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta charset="utf-8" />
 
-    <!-- Leaflet first -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js"></script>
+<head>
+  <title>Stellar Torch Home</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="utf-8" />
 
-    <!-- Then mapbox GL -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.maptiler.com/mapbox-gl-js/v0.53.0/mapbox-gl.css"
-    />
-    <script src="https://cdn.maptiler.com/mapbox-gl-js/v0.53.0/mapbox-gl.js"></script>
+  <!-- Leaflet first -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/stellar-sdk/3.0.0/stellar-sdk.js"></script>
 
-    <!-- Then the Leaflet/Mapbox bindings -->
-    <script src="https://cdn.maptiler.com/mapbox-gl-leaflet/latest/leaflet-mapbox-gl.js"></script>
+  <!-- Then mapbox GL -->
+  <link rel="stylesheet" href="https://cdn.maptiler.com/mapbox-gl-js/v0.53.0/mapbox-gl.css" />
+  <script src="https://cdn.maptiler.com/mapbox-gl-js/v0.53.0/mapbox-gl.js"></script>
 
-    <script src="static/js/leaflet.curve.js"></script>
-    <script src="static/js/jquery.min.js"></script>
+  <!-- Then the Leaflet/Mapbox bindings -->
+  <script src="https://cdn.maptiler.com/mapbox-gl-leaflet/latest/leaflet-mapbox-gl.js"></script>
 
-     <!-- Then our stellar-api and their dependencies -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bignumber.js/9.0.0/bignumber.min.js"></script>
-    <script src="/static/js/memo-hex.js"></script>
-    <script src="/static/js/stellar-api.js"></script>
+  <script src="static/js/leaflet.curve.js"></script>
+  <script src="static/js/jquery.min.js"></script>
 
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Heebo:900&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css"
-    />
+  <!-- Then our stellar-api and their dependencies -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bignumber.js/9.0.0/bignumber.min.js"></script>
+  <script src="/static/js/memo-hex.js"></script>
+  <script src="/static/js/stellar-api.js"></script>
 
+  <script src="/static/js/countryList.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Heebo:900&display=swap" />
 
-    <link rel="stylesheet" href="static/css/home.css" media="screen" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css" />
 
-      <!-- Animations library -->
-      <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  </head>
+  <link rel="stylesheet" href="static/css/home.css" media="screen" />
+  <link rel="stylesheet" href="static/css/loader.css" media="screen" />
 
-  <body>
-    <section class="is-bold">
-      <div class="container with-padding" data-aos="fade-left">
-        <h1 class="hero-text text-faded">A Stellar Community Experiment.</h1>
-        <h1 class="hero-text text-fading">Pass on the Torch.</h1>
-        <h1 class="hero-text">Show the Stellar strength.</h1>
+  <!-- Animations library -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+</head>
+
+<body>
+  <section class="is-bold">
+    <div class="container with-padding" data-aos="fade-left">
+      <h1 class="hero-text text-faded">A Stellar Community Experiment.</h1>
+      <h1 class="hero-text text-fading">Pass on the Torch.</h1>
+      <h1 class="hero-text">Show the Stellar strength.</h1>
+    </div>
+  </section>
+
+  <section class="container is-widescreen is-fullhd">
+    <div id="map"></div>
+  </section>
+
+  <section class="container" data-aos="zoom-in">
+    <nav class="level with-padding">
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Kilometres Covered</p>
+          <p class="stat" id="stat_kms">0</p>
+        </div>
       </div>
-    </section>
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Torch Bearers</p>
+          <p class="stat" id="stat_bearers">0</p>
+        </div>
+      </div>
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Total Fees</p>
+          <p class="stat" id="stat_fees">$0.00000</p>
+        </div>
+      </div>
+    </nav>
+  </section>
 
-    <section class="container is-widescreen is-fullhd">
-      <div id="map"></div>
-    </section>
-
-    <section class ="container" data-aos="zoom-in">
-      <nav class="level with-padding">
-        <div class="level-item has-text-centered">
-          <div>
-            <p class="heading">Kilometres Covered</p>
-            <p class="stat" id="stat_kms">0</p>
-          </div>
+  <section class="bottom">
+    <div class="container  with-padding" data-aos="fade-right">
+      <div class="columns  is-centered ">
+        <div class="column is-centered flex-center">
+          <img class="default-image" src="static/img/globe.png" alt="" />
         </div>
-        <div class="level-item has-text-centered">
-          <div>
-            <p class="heading">Torch Bearers</p>
-            <p class="stat" id="stat_bearers">0</p>
-          </div>
-        </div>
-        <div class="level-item has-text-centered">
-          <div>
-            <p class="heading">Total Fees</p>
-            <p class="stat" id="stat_fees">$0.00000</p>
-          </div>
-        </div>
-      </nav>
-    </section>
-    
-    <section class="bottom">
-      <div class="container  with-padding" data-aos="fade-right">
-        <div class="columns  is-centered ">
-            <div class="column is-centered flex-center">
-                <img class="default-image" src="static/img/globe.png" alt="" />
-              </div>
-          <div class="column content with-padding is-four-fifths">
-            <span class="title">The stellartorch</span><br />
-            <span class="subtitle">A social experiment on Stellar network</span>
-            <div class="content with-padding">
-              The Stellar Torch is a transaction that is sent from person to person. Just like a relay baton. Every torch bearer is responsible to send the torch to someone he knows and trusts. The map above shows where the torch has traveled to until now. 
+        <div class="column content with-padding is-four-fifths">
+          <span class="title">The stellartorch</span><br />
+          <span class="subtitle">A social experiment on Stellar network</span>
+          <div class="content with-padding">
+            The Stellar Torch is a transaction that is sent from person to person. Just like a relay baton. Every torch
+            bearer is responsible to send the torch to someone he knows and trusts. The map above shows where the torch
+            has traveled to until now.
             </br>
-            The torch is sent through the Stellar Network, an open network for storing and moving money at almost zero cost.
-          </br>
-            </div>
+            The torch is sent through the Stellar Network, an open network for storing and moving money at almost zero
+            cost.
+            </br>
           </div>
-
         </div>
       </div>
-      <div class="container secondary-color with-padding" data-aos="fade-left">
-          <div class="columns  is-centered">
-            <div class="column content with-padding is-four-fifths">
-              <span class="title"> What do torch bearers do?</span><br />
-              <div class="content with-padding ">
-                <ol>
-                  <li>Every holder will publicly ask someone to receive the torch, using the <a href="https://twitter.com/hashtag/stellartorch" target="_blank">#Stellartorch</a>. After receiving confirmation, he will send the torch. The sender is responsible for picking a trustworthy receiver that will not run away with the torch.</li>
-                  <li>In the memo field of the transaction, the sender puts their geographical coordinates in this format: [52.370216,4.895168]. You can see find coordinates here (<a href="https://www.latlong.net" target="_blank">https://www.latlong.net</a>).</li>
-                    <li> The receiver picks a person to send the torch to next and announces this publicly on Twitter, using the hashtag: <a href="https://twitter.com/hashtag/stellartorch" target="_blank">#Stellartorch</a>.</li>
-                </ol>
-              </div>
-            </div>
-            <div class="column is-centered flex-center">
-                <img class="default-image" src="static/img/torch.png" alt="" />
-              </div>
+    </div>
+    <div class="container secondary-color with-padding" data-aos="fade-left">
+      <div class="columns  is-centered">
+        <div class="column content with-padding is-four-fifths">
+          <span class="title"> What do torch bearers do?</span><br />
+          <div class="content with-padding ">
+            <ol>
+              <li>Every holder will publicly ask someone to receive the torch, using the <a
+                  href="https://twitter.com/hashtag/stellartorch" target="_blank">#Stellartorch</a>. After receiving
+                confirmation, he will send the torch. The sender is
+                responsible for picking a trustworthy receiver that will not run away with the torch.</li>
+              <li>In the memo field of the transaction, the sender puts their geographical coordinates in this format:
+                [52.370216,4.895168]. You can see find coordinates here (<a href="https://www.latlong.net"
+                  target="_blank">https://www.latlong.net</a>).</li>
+              <li> The receiver picks a person to send the torch to next and announces this publicly on Twitter, using
+                the hashtag: <a href="https://twitter.com/hashtag/stellartorch" target="_blank">#Stellartorch</a>.</li>
+            </ol>
           </div>
         </div>
-        <div class="container  with-padding" data-aos="fade-right">
-            <div class="columns is-mobile is-centered ">
-              <div class="column content with-padding is-four-fifths">
-                <div class="content with-padding">
-                  <div class="columns  is-centered">
-                    <div class="column is-centered flex-center">
-                      <img class="default-image" src="https://i.imgur.com/Pyp4DwX.png" alt="" />
-                    </div>
-                    <div>
-                        <span class="title">Challenges</span><br />
-                        <span class="subtitle">Coming soon...</span>
-                        <div class="with-padding">
-                        The Stellar torch comes with some community challenges. If for example the challenge is for the torch to reach George Clooney, every torch holder will send it one step closer to George. They will however, never send it to someone unknown or untrusted. This way the torch get’s closer to George with every hop.
-                        </div>
-                    </div>
-                </div>
-              </div>
-
+        <div class="column is-centered flex-center">
+          <img class="default-image" src="static/img/torch.png" alt="" />
+        </div>
+      </div>
+    </div>
+    <div data-aos="fade-right">
+      <div class="columns is-mobile is-centered ">
+        <div class="column content with-padding is-four-fifths">
+          <div class="content with-padding">
+            <div class="columns  is-centered">
+              <span class="title">Let's travel the whole world!
+              </span>
             </div>
+            <div class="columns  is-centered">
+              <span class="subtitle">Be the first to send the torch to a country and you'll earn a spot in this hall off
+                fame.
+            </div>
+            </span>
           </div>
-    </section>
+        </div>
+      </div>
+      <div id="countriesLoader" class="flex-center">
+        <div class="lds-ellipsis">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+      <div id="countries" class="container  with-padding">
+        <div id="countryList">
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="static/js/home.js"></script>
 
-    <script src="static/js/home.js"></script>
+  <script>
+    AOS.init();
+  </script>
 
-    <script>
-        AOS.init();
-    </script>
+</body>
 
-  </body>
 </html>
