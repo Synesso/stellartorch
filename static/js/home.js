@@ -10,10 +10,13 @@
   var DURATION_BASE = 1000;
   var radiusInMeters = 6371000;
   var xlmUsd = 0.1;
-
+  var transferWiseFees = 0;
   function updateStats(distanceInKm, bearers) {
     $("#stat_kms").text(distanceInKm.toLocaleString());
     $("#stat_bearers").text(bearers.toLocaleString());
+    $("#fiat_fees").text(
+      "$" + parseFloat((bearers * transferWiseFees).toPrecision(7))
+    );
     $("#stat_fees").text(
       "$" + parseFloat((bearers * 0.00001 * xlmUsd).toPrecision(7))
     );
@@ -171,6 +174,28 @@
     );
   }
 
+  async function getFees(){
+    // FEESWISE lambda url
+    const url = "https://7kzktxv912.execute-api.us-east-1.amazonaws.com/development/fees";
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        source: "USD",
+        target: "USD",
+        rateType: "FIXED",
+        targetAmount: 100        
+      })
+    }
+    try {
+      const response = await fetch(url, options)      
+      return response.json()
+    }catch(e){
+      console.log(e);
+    }
+  }
   // Initialize
   getBearers(bearers => {
     const data = {
@@ -183,6 +208,9 @@
 
     $(function() {
       setup(data);
+      getFees()
+        .then((data) => transferWiseFees = data.fee)
+        .catch(() => transferWiseFees = 0 );
     });
   });
 })((window.stellarTorchHome = window.stellarTorchHome || {}), jQuery);
